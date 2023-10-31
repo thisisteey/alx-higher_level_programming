@@ -1,6 +1,4 @@
 #!/usr/bin/python3
-#print the ASCII alphabe in lowercase
-alphabet = 97
-while alphabet <= 122:
+#prints the ASCII alphanet in lowercase
+for alphabet in range(97, 123):
     print("{}".format(chr(alphabet)), end="")
-    alphabet += 1
