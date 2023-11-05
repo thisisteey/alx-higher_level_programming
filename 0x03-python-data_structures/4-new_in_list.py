@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-# function that replaces an element in a list at a position without modifying the original
+# replaces an element in a list at a position without modifying the original
 # using def new_in_list(my_list, idx, element) prototype
 
 def new_in_list(my_list, idx, element):
