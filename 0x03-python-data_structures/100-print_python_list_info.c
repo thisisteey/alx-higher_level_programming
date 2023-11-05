@@ -1,6 +1,6 @@
 #include <Python.h>
-#include <object.h>
-#include <listobject.h>
+#include <stdio.h>
+#include <stdlib.h>
 
 /**
  * print_python_list_info - prints some bacis info about a python list
@@ -9,12 +9,17 @@
  */
 void print_python_list_info(PyObject *p)
 {
-	long int list_sz = PyList_Size(p);
-	int idx;
-	PyListObject *list_obj = (PyListObject *)p;
+	PyObject *itm;
+	PyListObject *listobj = (PyListObject *)p;
+	int idx, listsz, listalloc;
 
-	printf("[*] Size of the python List = %li\n", list_sz);
-	printf("[*] Allocated = %li\n", list_obj->allocated);
-	for (idx = 0 ; idx < list_sz ; idx++)
-		printf("Element %i: %s\n", idx, Py_TYPE(list_obj->ob_item[idx])->tp_name);
+	listsz = Py_SIZE(p);
+	listalloc = listobj->allocated;
+	printf("[*] Size of the Python List = %d\n", listsz);
+	printf("[*} Allocated = %d\n", listalloc);
+	for (idx = 0 ; idx < listsz ; idx++)
+	{
+		itm = PyList_GetItem(p, idx);
+		printf("Element %d: %s\n", idx, Py_TYPE(itm)->tp_name);
+	}
 }
