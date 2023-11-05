@@ -7,5 +7,5 @@ def multiple_returns(sentence):
     if len(sentence) == 0:
         multup = 0, "None"
     else:
-        multup = len(senetence), sentence[0]
+        multup = len(sentence), sentence[0]
     return multup
