@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-#function that adds two tuples
+# function that adds two tuples
 # using def add_tuple(tuple_a=(), tuple_b()) prototype
 
 def add_tuple(tuple_a=(), tuple_b=()):
