@@ -3,7 +3,7 @@
 
 /**
  * print_python_list_info - prints some bacis info about a python list
- * @p: pointer to the pythin list object
+ * @p: pointer to the python list object
  * Return: void
  */
 void print_python_list_info(PyObject *p)
