@@ -3,9 +3,11 @@
 # using def new_in_list(my_list, idx, element) prototype
 
 def new_in_list(my_list, idx, element):
-    nlist = my_list.copy()
+    nlist = []
+    for ele in my_list:
+        nlist.append(ele)
     if idx < 0 or idx >= len(my_list):
-        return my_list.copy()
+        return nlist
     else:
         nlist[idx] = element
         return nlist
