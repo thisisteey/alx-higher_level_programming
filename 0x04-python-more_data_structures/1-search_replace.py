@@ -3,5 +3,5 @@
 # using def search_replace(my_list, search, replace) prototype
 
 def search_replace(my_list, search, replace):
-    nlist = list(map(lambda item: replace if item == search else item, my_list))
+    nlist = list(map(lambda itm: replace if itm == search else itm, my_list))
     return (nlist)
