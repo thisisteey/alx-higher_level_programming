@@ -1,0 +1,6 @@
+#!/usr/bin/python3
+# returns a new dictionary with all values multiplied by 2
+# using def multiply_by_2(a_dictionary) prototype
+
+def multiply_by_2(a_dictionary):
+    return {key: value*2 for key, value in a_dictionary.items()}
