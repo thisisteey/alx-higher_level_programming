@@ -3,7 +3,7 @@
 
 /**
  * print_python_float - prints information about a PyFloatObject
- * @p: pointer to the PyObject representing a PyFloatObject
+ * @p: pointer to the PyObject represnting a PyFloatObject
  * Return: void
  */
 void print_python_float(PyObject *p)
@@ -23,10 +23,9 @@ void print_python_float(PyObject *p)
 	fltstr = PyOS_double_to_string(fltval, 'r', 0, Py_DTSF_ADD_DOT_0, NULL);
 	printf("  value: %s\n", fltstr);
 }
-
 /**
  * print_python_bytes - prints information about a PyBytesObject
- * @p: pointer to the PyObject representing a PyBytesObject
+ * @p: pointer to the PyObject represnting a PyBytesObject
  * Return: void
  */
 void print_python_bytes(PyObject *p)
@@ -53,10 +52,9 @@ void print_python_bytes(PyObject *p)
 	}
 	printf("\n");
 }
-
 /**
  * print_python_list - prints information about a PyListObject
- * @p: pointer to the PyObject representing a PyListObject
+ * @p: pointer to the PyObject represnting a PyListObject
  * Return: void
  */
 void print_python_list(PyObject *p)
@@ -66,7 +64,7 @@ void print_python_list(PyObject *p)
 	int idx = 0;
 
 	fflush(stdout);
-	printf("[*] Python List info\n");
+	printf("[*] Python list info\n");
 	if (PyList_CheckExact(p))
 	{
 		lstsz = PyList_GET_SIZE(p);
