@@ -23,6 +23,7 @@ void print_python_float(PyObject *p)
 	fltstr = PyOS_double_to_string(fltval, 'r', 0, Py_DTSF_ADD_DOT_0, NULL);
 	printf("  value: %s\n", fltstr);
 }
+
 /**
  * print_python_bytes - prints information about a PyBytesObject
  * @p: pointer to the PyObject represnting a PyBytesObject
@@ -52,6 +53,7 @@ void print_python_bytes(PyObject *p)
 	}
 	printf("\n");
 }
+
 /**
  * print_python_list - prints information about a PyListObject
  * @p: pointer to the PyObject represnting a PyListObject
