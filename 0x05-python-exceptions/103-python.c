@@ -8,8 +8,8 @@
  */
 void print_python_bytes(PyObject *p)
 {
-	Py_ssize_t bytsz = 0, idx = 0;
-	char *bytstr = NULL;
+	Py_ssize_t size = 0, i = 0;
+	char *string = NULL;
 
 	fflush(stdout);
 	printf("[.] bytes object info\n");
@@ -18,15 +18,15 @@ void print_python_bytes(PyObject *p)
 		printf("  [ERROR] Invalid Bytes Object\n");
 		return;
 	}
-	bytsz = PyBytes_Size(p);
-	printf("  size: %zd\n", bytsz);
-	bytstr = (assert(PyBytes_Check(p)), (((PyBytesObject *)(p))->ob_sval));
-	printf("  trying string: %s\n", bytstr);
-	printf("  first %zd bytes:", bytsz < 10 ? bytsz + 1 : 10);
-	while (idx < bytsz + 1 && idx < 10)
+	size = PyBytes_Size(p);
+	printf("  size: %zd\n", size);
+	string = (assert(PyBytes_Check(p)), (((PyBytesObject *)(p))->ob_sval));
+	printf("  trying string: %s\n", string);
+	printf("  first %zd bytes:", size < 10 ? size + 1 : 10);
+	while (i < size + 1 && i < 10)
 	{
-		printf(" %02hhx", bytstr[idx]);
-		idx++;
+		printf(" %02hhx", string[i]);
+		i++;
 	}
 	printf("\n");
 }
@@ -38,8 +38,8 @@ void print_python_bytes(PyObject *p)
  */
 void print_python_float(PyObject *p)
 {
-	double fltval = 0;
-	char *fltstr = NULL;
+	double value = 0;
+	char *string = NULL;
 
 	fflush(stdout);
 	printf("[.] float object info\n");
@@ -48,9 +48,9 @@ void print_python_float(PyObject *p)
 		printf("  [ERROR] Invalid Float Object\n");
 		return;
 	}
-	fltval = ((PyFloatObject *)p)->ob_fval;
-	fltstr = PyOS_double_to_string(fltval, 'r', 0, Py_DTSF_ADD_DOT_0, NULL);
-	printf("  value: %s\n", fltstr);
+	value = ((PyFloatObject *)p)->ob_fval;
+	string = PyOS_double_to_string(value, 'r', 0, Py_DTSF_ADD_DOT_0, NULL);
+	printf("  value: %s\n", string);
 }
 
 /**
@@ -60,26 +60,26 @@ void print_python_float(PyObject *p)
  */
 void print_python_list(PyObject *p)
 {
-	Py_ssize_t lstsz = 0;
-	PyObject *lstitm;
-	int idx = 0;
+	Py_ssize_t size = 0;
+	PyObject *item;
+	int i = 0;
 
 	fflush(stdout);
 	printf("[*] Python List info\n");
 	if (PyList_CheckExact(p))
 	{
-		lstsz = PyList_GET_SIZE(p);
-		printf("[*] Size of the Python List = %zd\n", lstsz);
+		size = PyList_GET_SIZE(p);
+		printf("[*] Size of the Python List = %zd\n", size);
 		printf("[*] Allocated = %lu\n", ((PyListObject *)p)->allocated);
-		while (idx < lstsz)
+		while (i < size)
 		{
-			lstitm = PyList_GET_ITEM(p, idx);
-			printf("Element %d: %s\n", idx, lstitm->ob_type->tp_name);
-			if (PyBytes_Check(lstitm))
-				print_python_bytes(lstitm);
-			else if (PyFloat_Check(lstitm))
-				print_python_float(lstitm);
-			idx++;
+			item = PyList_GET_ITEM(p, i);
+			printf("Element %d: %s\n", i, item->ob_type->tp_name);
+			if (PyBytes_Check(item))
+				print_python_bytes(item);
+			else if (PyFloat_Check(item))
+				print_python_float(item);
+			i++;
 		}
 	}
 	else
