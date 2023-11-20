@@ -1,34 +1,15 @@
 #include <Python.h>
 #include <stdio.h>
-/**
- * print_python_float - gives data of the PyFloatObject
- * @p: the PyObject
- */
-void print_python_float(PyObject *p)
-{
-	double value = 0;
-	char *string = NULL;
 
-	fflush(stdout);
-	printf("[.] float object info\n");
-
-	if (!PyFloat_CheckExact(p))
-	{
-		printf("  [ERROR] Invalid Float Object\n");
-		return;
-	}
-	value = ((PyFloatObject *)p)->ob_fval;
-	string = PyOS_double_to_string(value, 'r', 0, Py_DTSF_ADD_DOT_0, NULL);
-	printf("  value: %s\n", string);
-}
 /**
- * print_python_bytes - gives data of the PyBytesObject
- * @p: the PyObject
+ * print_python_bytes - prints information about a PyBytesObject
+ * @p: pointer to the PyObject representing a PyBytesObject
+ * Return: void
  */
 void print_python_bytes(PyObject *p)
 {
-	Py_ssize_t size = 0, i = 0;
-	char *string = NULL;
+	Py_ssize_t bytsz = 0, idx = 0;
+	char *bytstr = NULL;
 
 	fflush(stdout);
 	printf("[.] bytes object info\n");
@@ -37,44 +18,68 @@ void print_python_bytes(PyObject *p)
 		printf("  [ERROR] Invalid Bytes Object\n");
 		return;
 	}
-	size = PyBytes_Size(p);
-	printf("  size: %zd\n", size);
-	string = (assert(PyBytes_Check(p)), (((PyBytesObject *)(p))->ob_sval));
-	printf("  trying string: %s\n", string);
-	printf("  first %zd bytes:", size < 10 ? size + 1 : 10);
-	while (i < size + 1 && i < 10)
+	bytsz = PyBytes_Size(p);
+	printf("  size: %zd\n", bytsz);
+	bytstr = (assert(PyBytes_Check(p)), (((PyBytesObject *)(p))->ob_sval));
+	printf("  trying string: %s\n", bytstr);
+	printf("  first %zd bytes:", bytsz < 10 ? bytsz + 1 : 10);
+	while (idx < bytsz + 1 && idx < 10)
 	{
-		printf(" %02hhx", string[i]);
-		i++;
+		printf(" %02hhx", bytstr[idx]);
+		idx++;
 	}
 	printf("\n");
 }
+
 /**
- * print_python_list - gives data of the PyListObject
- * @p: the PyObject
+ * print_python_float - prints information about a PyFloatObject
+ * @p: pointer to the PyObject representing a PyFloatObject
+ * Return: void
+ */
+void print_python_float(PyObject *p)
+{
+	double fltval = 0;
+	char *fltstr = NULL;
+
+	fflush(stdout);
+	printf("[.] float object info\n");
+	if (!PyFloat_CheckExact(p))
+	{
+		printf("  [ERROR] Invalid Float Object\n");
+		return;
+	}
+	fltval = ((PyFloatObject *)p)->ob_fval;
+	fltstr = PyOS_double_to_string(fltval, 'r', 0, Py_DTSF_ADD_DOT_0, NULL);
+	printf("  value: %s\n", fltstr);
+}
+
+/**
+ * print_python_list - prints information about a PyListObject
+ * @p: pointer to the PyObject representing a PyListObject
+ * Return: void
  */
 void print_python_list(PyObject *p)
 {
-	Py_ssize_t size = 0;
-	PyObject *item;
-	int i = 0;
+	Py_ssize_t lstsz = 0;
+	PyObject *lstitm;
+	int idx = 0;
 
 	fflush(stdout);
-	printf("[*] Python list info\n");
+	printf("[*] Python List info\n");
 	if (PyList_CheckExact(p))
 	{
-		size = PyList_GET_SIZE(p);
-		printf("[*] Size of the Python List = %zd\n", size);
+		lstsz = PyList_GET_SIZE(p);
+		printf("[*] Size of the Python List = %zd\n", lstsz);
 		printf("[*] Allocated = %lu\n", ((PyListObject *)p)->allocated);
-		while (i < size)
+		while (idx < lstsz)
 		{
-			item = PyList_GET_ITEM(p, i);
-			printf("Element %d: %s\n", i, item->ob_type->tp_name);
-			if (PyBytes_Check(item))
-				print_python_bytes(item);
-			else if (PyFloat_Check(item))
-				print_python_float(item);
-			i++;
+			lstitm = PyList_GET_ITEM(p, idx);
+			printf("Element %d: %s\n", idx, lstitm->ob_type->tp_name);
+			if (PyBytes_Check(lstitm))
+				print_python_bytes(lstitm);
+			else if (PyFloat_Check(lstitm))
+				print_python_float(lstitm);
+			idx++;
 		}
 	}
 	else
