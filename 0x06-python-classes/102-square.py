@@ -36,18 +36,18 @@ class Square:
         """checks the != comparison"""
         return self.area() != other.area()
 
-    def __ge__(self, other):
-        """checks the >= comparison"""
-        return self.area() >= other.area()
+    def __lt__(self, other):
+        """checks the < comparison"""
+        return self.area() < other.area()
+
+    def __le__(self, other):
+        """checks the <= comparison"""
+        return self.area() <= other.area()
 
     def __gt__(self, other):
         """checks the > comparison"""
         return self.area() > other.area()
 
-    def __le__(self, other):
-        """checks the < comparison"""
-        return self.area() < other.area()
-
-    def __lt__(self, other):
-        """checks the <= comparison"""
-        return self.area() <= other.area()
+    def __ge__(self, other):
+        """checks the >= comparison"""
+        return self.area() >= other.area()
