@@ -66,4 +66,3 @@ class Square:
             if x != self.__size - 1:
                 print("")
         return ("")
-
