@@ -1,0 +1,33 @@
+Test case for the add_integer function
+
+>>> add_integer = __import__("0-add_integer").add_integer
+
+Test case 1: Valid addition of integers
+>>> add_integer(8, 9)
+17
+
+Test case 2: Valid addition of float(typecasted to int)
+>>> add_integer(7.6, 10.2)
+17
+
+Test case 3: Using the default value of b (98)
+>>> add_integer(9)
+107
+
+Test case 4: TypeError when value of a is not an integer or float
+>>> add_integer("str", 3)
+Traceback (most recent call last):
+...
+TypeError: a must be an integer
+
+Test case 5: TypeError when the value of b is not an integer or float
+>>> add_integer(4, ())
+Traceback (most recent call last):
+...
+TypeError: b must be an integer
+
+Test case 6: TypeError when the value of both a and b are not integers and floats
+>>> add_integer([], {})
+Traceback (most recent call last):
+...
+TypeError: a must be an integer
