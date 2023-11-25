@@ -1,0 +1,35 @@
+Test case for the text_indentation function
+
+>>> text_indentation = __import__("5-text_indentation").text_indentation
+
+Test case 1: prints text with two new lines after '.', '?', and ':'
+>>> text_indentation("Hello, how are you? Good to be here.")
+Hello, how are you?
+<BLANKLINE>
+Good to be here.
+<BLANKLINE>
+
+Test case 2: prints text with two new lines after '.', '?', and ':'
+including new lines
+>>> text_indentation("Hi.\nHow is your day going?")
+Hi.
+<BLANKLINE>
+<BLANKLINE>
+How is your day going?
+<BLANKLINE>
+
+Test case 3: no spaces are printed at the beginning of a new line
+>>> text_indentation("  Hello.")
+Hello.
+<BLANKLINE>
+
+Test case 4: no spaces printed at the end of a new line
+>>> text_indentation("Hi.   ")
+Hi.
+<BLANKLINE>
+
+Test case 5: TypeError if the text is not a string
+>>> text_indentation({"one": 2})
+Traceback (most recent call last):
+...
+TypeError: text must be a string
