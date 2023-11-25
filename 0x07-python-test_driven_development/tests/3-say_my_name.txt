@@ -1,0 +1,23 @@
+Test case for the say_my_name function
+
+>>> say_my_name = __import__("3-say_my_name").say_my_name
+
+Test case 1: prints both first and last name
+>>> say_my_name("Taiwo", "Dada")
+My name is Taiwo Dada
+
+Test case 2: prints the first name only
+>>> say_my_name("Taiwo")
+My name is Taiwo 
+
+Test case 3: TypeError if the first name is not a string
+>>> say_my_name(12.4, "Dada")
+Traceback (most recent call last):
+...
+TypeError: first_name must be a string
+
+Test case 4: TypeError if the last name is not a string
+>>> say_my_name("Taiwo", 146)
+Traceback (most recent call last):
+...
+TypeError: last_name must be a string
