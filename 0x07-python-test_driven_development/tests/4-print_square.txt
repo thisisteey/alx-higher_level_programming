@@ -1,0 +1,33 @@
+Test case for the print_square function
+
+>>> print_square = __import__("4-print_square").print_square
+
+Test case 1: prints square of size 5
+>>> print_square(5)
+#####
+#####
+#####
+#####
+#####
+
+Test case 2: print square of size 0
+>>> print_square(0)
+
+
+Test case 3: TypeError if the size of the square is not an integer
+>>> print_square([])
+Traceback (most recent call last):
+...
+TypeError: size must be an integer
+
+Test case 4: ValueError if the size of the square is less than zero
+>>> print_square(-5)
+Traceback (most recent call last):
+...
+ValueError: size must be >= 0
+
+Test case 5: TypeError if size is a float and is less than 0
+>>> print_square(-2.5)
+Traceback (most recent call last):
+...
+TypeError: size must be an integer
