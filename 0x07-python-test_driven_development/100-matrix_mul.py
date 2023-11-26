@@ -22,12 +22,14 @@ def matrix_mul(m_a, m_b):
         raise TypeError("m_a must be a list of lists")
     if not all(isinstance(rows, list) for rows in m_b):
         raise TypeError("m_b must be a list of lists")
-    if not all((isinstance(val, int) or isinstance(val, float))
-            for val in [dig for rows in m_a for dig in rows]):
-        raise TypeError("m_a should contain only integers or floats")
-    if not all((isinstance(val, int) or isinstance(val, float))
-            for val in [dig for rows in m_b for dig in rows]):
-        raise TypeError("m_b should contain only integers or floats")
+    for rows in m_a:
+        for col in rows:
+            if type(col) != int and type(col) != float:
+                raise TypeError("m_a should contain only integers or floats")
+    for rows in m_b:
+        for col in rows:
+            if type(col) != int and type(col) != float:
+                raise TypeError("m_b should contain only integers or floats")
     if not all(len(rows) == len(m_a[0]) for rows in m_a):
         raise TypeError("each row of m_a must be of the same size")
     if not all(len(rows) == len(m_b[0]) for rows in m_b):
