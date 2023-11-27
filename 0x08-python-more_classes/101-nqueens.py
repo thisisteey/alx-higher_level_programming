@@ -1,10 +1,9 @@
 #!/usr/bin/python3
-# The N queens puzzle is the challenge of placing N non-attacking
-# queens on an N×N chessboard.
 """A program that solves the N queens problem"""
 
 
 from sys import argv
+
 if __name__ == "__main__":
     queenspos = []
     if len(argv) != 2:
