@@ -1,62 +1,111 @@
 #!/usr/bin/python3
-"""
-nqueens backtracking program to print the coordinates of n queens
-on an nxn grid such that they are all in non-attacking positions
-"""
+"""A program that solves the N queens problem of placing non-attacking
+queens on an NxN chessboard"""
+from sys import argv, exit
 
 
-import sys
+def start_board(n):
+    """initialize an n x n sized chessboard
+    Args:
+    brd (list): list of lists representing the chessboard"""
+    brd = []
+    [brd.append([]) for x in range(n)]
+    [rows.append(' ') for x in range(n) for rows in brd]
+    return (brd)
+
+
+def cpy_board(brd):
+    """returns a copy of the chessboard
+    Args:
+    brd (list): list of lists representing the chessboard"""
+    if isinstance(brd, list):
+        return list(map(cpy_board, brd))
+    return (brd)
+
+
+def get_queenspos(brd):
+    """gets and returns a solved chessboard
+    Args:
+    brd (list): list of lists representing the chessboard"""
+    sol = []
+    for y in range(len(brd)):
+        for z in range(len(brd)):
+            if brd[y][z] == "Q":
+                sol.append([y, z])
+                break
+    return (sol)
+
+
+def mark_spot(brd, rows, cols):
+    """marks spots where non-attacking queen cannot play
+    Args:
+    brd (list): the chessboard
+    rows (int): last played queen row
+    cols (int): last played queen column"""
+    for z in range(cols + 1, len(brd)):
+        brd[rows][z] = "x"
+    for z in range(cols - 1, -1, -1):
+        brd[rows][z] = "x"
+    for y in range(rows + 1, len(brd)):
+        brd[y][cols] = "x"
+    for y in range(rows - 1, -1, -1):
+        brd[y][cols] = "x"
+    z = cols + 1
+    for y in range(rows + 1, len(brd)):
+        if z >= len(brd):
+            break
+        brd[y][z] = "x"
+        z += 1
+    z = cols - 1
+    for y in range(rows - 1, -1, -1):
+        if z < 0:
+            break
+        brd[y][z]
+        z -= 1
+    z = cols + 1
+    for y in range(rows - 1, -1, -1):
+        if z >= len(brd):
+            break
+        brd[y][z] = "x"
+        z += 1
+    z = cols - 1
+    for y in range(rows + 1, len(brd)):
+        if z < 0:
+            break
+        brd[y][z] = "x"
+        z -= 1
+
+
+def solve_nqueens(brd, rows, qun, sol):
+    """solves an N-queens puzzle recursively
+    Args:
+    brd (list): the chessboard
+    rows (int): the current working row
+    qun (int): the number of placed queens
+    sol (list): list of lists of solutions"""
+    if qun == len(brd):
+        sol.append(get_queenspos(brd))
+        return (sol)
+    for z in range(len(brd)):
+        if brd[rows][z] == " ":
+            tempbrd = cpy_board(brd)
+            tempbrd[rows][z] = "Q"
+            mark_spot(tempbrd, rows, z)
+            sol = solve_nqueens(tempbrd, rows + 1, qun + 1, sol)
+    return (sol)
+
 
 if __name__ == "__main__":
-    a = []
-    if len(sys.argv) != 2:
+    if len(argv) != 2:
         print("Usage: nqueens N")
-        sys.exit(1)
-    if sys.argv[1].isdigit() is False:
+        exit(1)
+    if not argv[1].isdigit():
         print("N must be a number")
-        sys.exit(1)
-    n = int(sys.argv[1])
-    if n < 4:
+        exit(1)
+    if int(argv[1]) < 4:
         print("N must be at least 4")
-        sys.exit(1)
-
-    # initialize the answer list
-    for i in range(n):
-        a.append([i, None])
-
-    def already_exists(y):
-        """check that a queen does not already exist in that y value"""
-        for x in range(n):
-            if y == a[x][1]:
-                return True
-        return False
-
-    def reject(x, y):
-        """determines whether or not to reject the solution"""
-        if (already_exists(y)):
-            return False
-        i = 0
-        while(i < x):
-            if abs(a[i][1] - y) == abs(i - x):
-                return False
-            i += 1
-        return True
-
-    def clear_a(x):
-        """clears the answers from the point of failure on"""
-        for i in range(x, n):
-            a[i][1] = None
-
-    def nqueens(x):
-        """recursive backtracking function to find the solution"""
-        for y in range(n):
-            clear_a(x)
-            if reject(x, y):
-                a[x][1] = y
-                if (x == n - 1):  # accepts the solution
-                    print(a)
-                else:
-                    nqueens(x + 1)  # moves on to next x value to continue
-
-    # start the recursive process at x = 0
-    nqueens(0)
+        exit(1)
+    brd = start_board(int(argv[1]))
+    sol = solve_nqueens(brd, 0, 0, [])
+    for s in sol:
+        print(s)
