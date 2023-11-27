@@ -39,7 +39,7 @@ if __name__ == "__main__":
         return True
 
     def clear_queenpos(strtrow):
-        """clears the queen's position from the point of failure"""
+        """clears the queen position from the point of failure"""
         for rows in range(strtrow, boardsz):
             queenspos[rows][1] = None
 
