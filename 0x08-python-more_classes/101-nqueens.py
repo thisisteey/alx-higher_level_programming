@@ -53,4 +53,5 @@ if __name__ == "__main__":
                     print(queenspos)
                 else:
                     nqueens(currrow + 1)
+
     nqueens(0)
