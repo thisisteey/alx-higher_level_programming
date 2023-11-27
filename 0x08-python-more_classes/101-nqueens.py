@@ -9,7 +9,7 @@ if __name__ == "__main__":
     if len(argv) != 2:
         print("Usage: nqueens N")
         exit(1)
-    if not argv[1].isdigit():
+    if argv[1].isdigit() is False:
         print("N must be a number")
         exit(1)
     boardsz = int(argv[1])
