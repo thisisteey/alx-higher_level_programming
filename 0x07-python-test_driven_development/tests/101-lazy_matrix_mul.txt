@@ -11,13 +11,13 @@ Test case 2: TypeError if m_a is not a list
 >>> lazy_matrix_mul("a_str", [[1, 4], [5, 6]])
 Traceback (most recent call last):
 ...
-TypeError: m_a should be a list
+TypeError: Scalar operands are not allowed, use '*' instead
 
 Test case 3: TypeError if m_b is not a list
 >>> lazy_matrix_mul([[3, 6], [5, 7]], "a_str")
 Traceback (most recent call last):
 ...
-TypeError: m_b should be a list
+TypeError: Scalar operands are not allowed, use '*' instead
 
 Test case 4: TypeError if m_a is not a list of lists
 >>> lazy_matrix_mul([("a_str"), [1, 2]], [[1, 4], [5, 6]])
@@ -35,37 +35,37 @@ Test case 6: ValueError if m_a is empty
 >>> lazy_matrix_mul([], [[2, 4], [7, 9]])
 Traceback (most recent call last):
 ...
-ValueError: m_a should not be empty
+ValueError: shapes (1,0) and (2,2) not aligned: 0 (dim 1) != 2 (dim 0)
 
 Test case 7: ValueError if m_b is empty
 >>> lazy_matrix_mul([[3, 5], [8, 1]], [[]])
 Traceback (most recent call last):
 ...
-ValueError: m_b should not be empty
+ValueError: shapes (2,2) and (1,0) not aligned: 2 (dim 1) != 1 (dim 0)
 
 Test case 8: TypeError if elements of m_a are not ints or floats
 >>> lazy_matrix_mul([[1, 'b'], [4, 'x']], [[5, 6], [8, 9]])
 Traceback (most recent call last):
 ...
-TypeError: invalid data type in m_a for einsum
+TypeError: invalid data type for einsum
 
 Test case 9: TypeError if elements of m_b are not ints or floats
 >>> lazy_matrix_mul([[2, 4, 6], [1, 5, 8]], [[3, 'h'], ['x', 'l']])
 Traceback (most recent call last):
 ...
-TypeError: invalid data type in m_b for einsum
+TypeError: invalid data type for einsum
 
 Test case 10: ValueError if m_a has unequal sized rows
 >>> lazy_matrix_mul([[1, 3], [2, 5, 7]], [[4, 6], [8, 9]])
 Traceback (most recent call last):
 ...
-ValueError: shapes (2,3) and (2,2) not aligned
+ValueError: setting an array element with a sequence
 
 Test case 11: ValueError if m_b has unequal sized rows
 >>> lazy_matrix_mul([[6, 8], [7, 8]], [[4, 5, 3], [5, 7]])
 Traceback (most recent call last):
 ...
-ValueError: shapes (2,2) and (2,3) not aligned
+ValueError: setting an array element with a sequence
 
 Test case 12: ValueError if m_a and m_b cannot be multiplied
 >>> lazy_matrix_mul([[6, 7], [4, 8]], [[6, 9]])
