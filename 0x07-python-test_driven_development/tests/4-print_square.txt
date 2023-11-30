@@ -31,3 +31,9 @@ Test case 5: TypeError if size is a float and is less than 0
 Traceback (most recent call last):
 ...
 TypeError: size must be an integer
+
+Test case 6: TypeError when size is missing
+>>> print_square()
+Traceback (most recent call last):
+...
+TypeError: print_square() missing 1 required positional argument: 'size'
