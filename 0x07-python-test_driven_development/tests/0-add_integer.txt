@@ -31,3 +31,15 @@ Test case 6: TypeError when the value of both a and b are not integers and float
 Traceback (most recent call last):
 ...
 TypeError: a must be an integer
+
+Test case 7: OverflowError when there if float overflow
+>>> add_integer(float('inf'), 6)
+Traceback (most recent call last):
+...
+OverflowError: cannot convert float infinity to integer
+
+Test case 8: ValueError for converting float NaN
+>>> add_integer(float('nan'), 9)
+Traceback (most recent call last):
+...
+ValueError: cannot convert float NaN to integer
