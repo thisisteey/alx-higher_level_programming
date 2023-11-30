@@ -26,9 +26,9 @@ def lazy_matrix_mul(m_a, m_b):
     if m_b == [] or m_b == [[]]:
         raise ValueError(mbvalerr)
     if not all(len(rows) == len(m_a[0]) for rows in m_a):
-        raise ValueError("setting an array element with a sequence")
+        raise ValueError("setting an array element with a sequence.")
     if not all(len(rows) == len(m_b[0]) for rows in m_b):
-        raise ValueError("setting an array element with a sequence")
+        raise ValueError("setting an array element with a sequence.")
     for rows in m_a:
         for col in rows:
             if type(col) != int and type(col) != float:
