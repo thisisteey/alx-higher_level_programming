@@ -23,16 +23,16 @@ Test case 4: TypeError if m_a is not a list of lists
 >>> lazy_matrix_mul([("a_str"), [1, 2]], [[1, 4], [5, 6]])
 Traceback (most recent call last):
 ...
-TypeError: m_a should be a list of lists
+TypeError: shapes (1,2) and (1,2) not aligned: 2 (dim 1) != 1 (dim 0)
 
 Test case 5: TypeError if m_b is not a list of lists
 >>> lazy_matrix_mul([[3, 6], [5, 7]], [{"a_str"}, [2, 6]])
 Traceback (most recent call last):
 ...
-TypeError: m_b should be a list of lists
+TypeError: shapes (2,2) and (2,2) not aligned: 2 (dim 1) != 2 (dim 0)
 
 Test case 6: ValueError if m_a is empty
->>> lazy_matrix_mul([], [[2, 4], [7, 9]])
+>>> lazy_matrix_mul([[]], [[2, 4], [7, 9]])
 Traceback (most recent call last):
 ...
 ValueError: shapes (1,0) and (2,2) not aligned: 0 (dim 1) != 2 (dim 0)
@@ -72,3 +72,15 @@ Test case 12: ValueError if m_a and m_b cannot be multiplied
 Traceback (most recent call last):
 ...
 ValueError: shapes (2,2) and (1,2) not aligned: 2 (dim 1) != 1 (dim 0)
+
+Test case 13: TypeError when an argument is missing
+>>> lazy_matrix_mul([[2, 9], [1, 8]])
+Traceback (most recent call last):
+...
+TypeError: lazy_matrix_mul() missing 1 required positional argument: 'm_b'
+
+Test case 14: TypeError when two arguments are missing
+>>> lazy_matrix_mul()
+Traceback (most recent call last):
+...
+TypeError: lazy_matrix_mul() missing 2 required positional arguments: 'm_a' and 'm_b'
