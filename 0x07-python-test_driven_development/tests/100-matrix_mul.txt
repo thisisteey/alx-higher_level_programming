@@ -71,3 +71,15 @@ Test case 12: ValueError when m_a and m_b cannot be multiplied
 Traceback (most recent call last):
 ...
 ValueError: m_a and m_b can't be multiplied
+
+Test case 13: TypeError when an argument is missing
+>>> matrix_mul([[2, 9], [1, 8]])
+Traceback (most recent call last):
+...
+TypeError: matrix_mul() missing 1 required positional argument: 'm_b'
+
+Test case 14: TypeError when two arguments are missing
+>>> matrix_mul()
+Traceback (most recent call last):
+...
+TypeError: matrix_mul() missing 2 required positional arguments: 'm_a' and 'm_b'
