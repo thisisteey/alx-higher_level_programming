@@ -13,9 +13,10 @@ def matrix_divided(matrix, div):
                 2. for unequal matrix rows size
                 3. for non numeric divisor
     ZeroDivisionError: for when divisor is zero"""
-    matsize = [0,0]
+    matsize = [0, 0]
     funcres = []
     list_err = "matrix must be a matrix (list of lists) of integers/floats"
+    matrow_err = "Each row of the matrix must have the same size"
     if not isinstance(matrix, list):
         raise TypeError(list_err)
     matsize[0] = len(matrix)
@@ -30,7 +31,7 @@ def matrix_divided(matrix, div):
             if matsize[1] == 0:
                 matsize[1] = len(rows)
             elif len(rows) != matsize[1]:
-                raise TypeError("Each row of the matrix must have the same size")
+                raise TypeError(matrow_err)
             for columns in rows:
                 if not isinstance(columns, (int, float)):
                     raise TypeError(list_err)

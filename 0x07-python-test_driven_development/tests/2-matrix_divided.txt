@@ -39,3 +39,22 @@ Test case 5: ZeroDivisionError when divisor is zero
 Traceback (most recent call last):
 ...
 ZeroDivisionError: division by zero
+
+Test case 6: All values == 0.0 when div is float('inf')
+>>> matrix = [[2, 8, 3], [3, 6, 9]]
+>>> div = float('inf')
+>>> matrix_divided(matrix, div)
+[[0.0, 0.0, 0.0], [0.0, 0.0, 0.0]]
+
+Test case 7: TypeError when one argument is missing
+>>> matrix = [[2, 4, 1], [6, 7, 3]]
+>>> matrix_divided(matrix)
+Traceback (most recent call last):
+...
+TypeError: matrix_divided() missing 1 required positional argument: 'div'
+
+Test case 8: TypeError when two arguments are missing
+>>> matrix_divided()
+Traceback (most recent call last):
+...
+TypeError: matrix_divided() missing 2 required positional arguments: 'matrix' and 'div'
