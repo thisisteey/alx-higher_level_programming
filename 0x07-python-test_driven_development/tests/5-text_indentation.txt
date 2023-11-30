@@ -3,11 +3,14 @@ Test case for the text_indentation function
 >>> text_indentation = __import__("5-text_indentation").text_indentation
 
 Test case 1: prints text with two new lines after '.', '?', and ':'
->>> text_indentation("Hello, how are you? Good to be here.")
-Hello, how are you?
+>>> text_indentation("Hello. How are you? Good to be here: Taiwo")
+Hello.
 <BLANKLINE>
-Good to be here.
+How are you?
 <BLANKLINE>
+Good to be here:
+<BLANKLINE>
+Taiwo
 
 Test case 2: prints text with two new lines after '.', '?', and ':'
 including new lines
