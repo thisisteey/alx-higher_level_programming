@@ -38,6 +38,16 @@ class TestMaxInteger(unittest.TestCase):
         emplist = max_integer([])
         self.assertEqual(emplist, None)
 
+    def test_beginning_maxval(self):
+        """max_integer test for max value at the beginning"""
+        begmaxval = max_integer([7, 6, 3, 2, 4])
+        self.assertEqual(begmaxval, 7)
+
+    def test_middle_maxval(self):
+        """max_integer test for max value at the middle"""
+        midmaxval = max_integer([7, 8, 14, 4, 9])
+        self.assertEqual(midmaxval, 14)
+
 
 if __name__ == '__main__':
     unittest.main()
