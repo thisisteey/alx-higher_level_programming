@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """A base class is defined"""
-import json
+from json import dumps, loads
 
 
 class Base:
@@ -28,7 +28,7 @@ class Base:
         if list_dictionaries is None or list_dictionaries == []:
             return "[]"
         else:
-            return json.dumps(list_dictionaries)
+            return dumps(list_dictionaries)
 
     @classmethod
     def save_to_file(cls, list_objs):
@@ -51,7 +51,7 @@ class Base:
         if json_string is None or json_string == "[]":
             return []
         else:
-            return json.loads(json_string)
+            return loads(json_string)
 
     @classmethod
     def create(cls, **dictionary):
@@ -65,3 +65,14 @@ class Base:
                 newinst = cls(1)
             newinst.update(**dictionary)
             return (newinst)
+
+    @classmethod
+    def load_from_file(cls):
+        """loads class instance from a JSON file and returns a list instance"""
+        fname = str(cls.__name__) + ".json"
+        try:
+            with open(fname, "r") as jfile:
+                lst_dicts = Base.from_json_string(jfile.read())
+                return [cls.create(**dct) for dct in lst_dicts]
+        except IOError:
+            return []
