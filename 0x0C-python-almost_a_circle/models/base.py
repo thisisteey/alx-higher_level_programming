@@ -2,6 +2,7 @@
 """A base class is defined"""
 from json import dumps, loads
 from csv import DictWriter, DictReader
+import turtle
 
 
 class Base:
@@ -112,3 +113,40 @@ class Base:
                 return [cls.create(**dct) for dct in lst_dicts]
         except IOError:
             return []
+
+    @staticmethod
+    def draw(list_rectangles, list_squares):
+        """using the imported turtle module to draw rectangles and squares
+        Args:
+        list_rectangles (list): list of rectangles to draw
+        list_squares (list): list of squares to draw"""
+        tutcol = turtle.Turtle()
+        tutcol.screen.bgcolor("#808080")
+        tutcol.pensize(2)
+        tutcol.register_shape("heart", ((-30, -40), (0, 40), (30, -40)))
+        tutcol.shape("heart")
+
+        tutcol.color("#8F9779")
+        for rec in list_rectangles:
+            tutcol.showturtle()
+            tutcol.up()
+            tutcol.goto(rec.x, rec.y)
+            tutcol.down()
+            for side in range(2):
+                tutcol.forwars(rec.width)
+                tutcol.left(90)
+                tut.forward(rec.height)
+                tut.left(90)
+            tutcol.hideturtle()
+
+        tutcol.color("4682B4")
+        for sqr in list_squares:
+            tutcol.showturtle()
+            tutcol.up()
+            tutcol.goto(sqr.x, sqr.y)
+            tutcol.down()
+            for side in range(4):
+                tutcol.forward(sqr.width)
+                tutcol.left(90)
+            tutcol.hideturtle()
+        turtle.exitonclick()
