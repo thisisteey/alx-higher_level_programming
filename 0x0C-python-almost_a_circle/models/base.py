@@ -25,7 +25,7 @@ class Base:
         """serialize and returns a list of dicts to JSON string
         Args:
         list_dictionaries (list): the list of dictionaries to serialize"""
-        if not list_dictionaries:
+        if list_dictionaries is None or list_dictionaries == []:
             return "[]"
         else:
             return json.dumps(list_dictionaries)
@@ -37,7 +37,7 @@ class Base:
         list_objs (list): the list of instances gotten from the base class"""
         fname = cls.__name__ + ".json"
         with open(fname, "w") as jfile:
-            if not list_objs:
+            if list_objs is None:
                 jfile.write("[]")
             else:
                 lst_dicts = [obj.to_dictionary() for obj in list_objs]
@@ -48,7 +48,20 @@ class Base:
         """deserialize and returns a JSON string to a python list
         Args:
         json_string (str): JSON string representing a list of dictionaries"""
-        if not json_string or json_string == "[]":
+        if json_string is None or json_string == "[]":
             return []
         else:
             return json.loads(json_string)
+
+    @classmethod
+    def create(cls, **dictionary):
+        """instantiates and returns a class from a dictionary of attributes
+        Args:
+        **dictionary (dict): key/value pairs of attributes to be intialized"""
+        if dictionary and dictionary != {}:
+            if cls.__name__ == "Rectangle":
+                newinst = cls(1, 1)
+            else:
+                newinst = cls(1)
+            newinst.update(**dictionary)
+            return (newinst)
