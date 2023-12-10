@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 """A base class is defined"""
 from json import dumps, loads
+from csv import DictWriter, DictReader
 
 
 class Base:
@@ -73,6 +74,41 @@ class Base:
         try:
             with open(fname, "r") as jfile:
                 lst_dicts = Base.from_json_string(jfile.read())
+                return [cls.create(**dct) for dct in lst_dicts]
+        except IOError:
+            return []
+
+    @classmethod
+    def save_to_file_csv(cls, list_objs):
+        """serialize and wrtie a list of objects to a file as CSV
+        Args:
+        list_objs (list): the list of instances gotten from the base class"""
+        fname = cls.__name__ + ".csv"
+        with open(fname, "w", newline="") as cfile:
+            if list_objs is None or list_objs == []:
+                cfile.write("[]")
+            else:
+                if cls.__name__ == "Rectangle":
+                    fieldnames = ["id", "width", "height", "x", "y"]
+                else:
+                    fieldnames = ["id", "size", "x", "y"]
+                cwriter = DictWriter(cfile, fieldnames=fieldnames)
+                for objinst in list_objs:
+                    cwriter.writerow(objinst.to_dictionary())
+
+    @classmethod
+    def load_from_file_csv(cls):
+        """loads class instance from a CSV file and returns a list instance"""
+        fname = cls.__name__ + ".csv"
+        try:
+            with open(fname, "r", newline="") as cfile:
+                if cls.__name__ == "Rectangle":
+                    fieldnames = ["id", "width", "height", "x", "y"]
+                else:
+                    fieldnames = ["id", "size", "x", "y"]
+                lst_dicts = DictReader(cfile, fieldnames=fieldnames)
+                lst_dicts = [dict([key, int(val)] for key, val in dct.items())
+                             for dct in lst_dicts]
                 return [cls.create(**dct) for dct in lst_dicts]
         except IOError:
             return []
