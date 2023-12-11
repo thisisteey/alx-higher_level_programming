@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-"""A base class is defined"""
+"""A base class is as foundation to the other classes defined"""
 from json import dumps, loads
 from csv import DictWriter, DictReader
 import turtle
