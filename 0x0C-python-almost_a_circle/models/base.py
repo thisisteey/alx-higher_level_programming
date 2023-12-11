@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 """A base class is as foundation to the other classes defined"""
-from json import dumps, loads
-from csv import DictWriter, DictReader
+import json
+import csv
 import turtle
 
 
@@ -30,7 +30,7 @@ class Base:
         if list_dictionaries is None or list_dictionaries == []:
             return "[]"
         else:
-            return dumps(list_dictionaries)
+            return json.dumps(list_dictionaries)
 
     @classmethod
     def save_to_file(cls, list_objs):
@@ -53,7 +53,7 @@ class Base:
         if json_string is None or json_string == "[]":
             return []
         else:
-            return loads(json_string)
+            return json.loads(json_string)
 
     @classmethod
     def create(cls, **dictionary):
@@ -93,7 +93,7 @@ class Base:
                     fieldnames = ["id", "width", "height", "x", "y"]
                 else:
                     fieldnames = ["id", "size", "x", "y"]
-                cwriter = DictWriter(cfile, fieldnames=fieldnames)
+                cwriter = csv.DictWriter(cfile, fieldnames=fieldnames)
                 for objinst in list_objs:
                     cwriter.writerow(objinst.to_dictionary())
 
@@ -107,7 +107,7 @@ class Base:
                     fieldnames = ["id", "width", "height", "x", "y"]
                 else:
                     fieldnames = ["id", "size", "x", "y"]
-                lst_dicts = DictReader(cfile, fieldnames=fieldnames)
+                lst_dicts = csv.DictReader(cfile, fieldnames=fieldnames)
                 lst_dicts = [dict([key, int(val)] for key, val in dct.items())
                              for dct in lst_dicts]
                 return [cls.create(**dct) for dct in lst_dicts]
