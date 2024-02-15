@@ -8,7 +8,7 @@ import sys
 
 
 if __name__ == '__main__':
-    if len(sys.argv) >= 4:
+    if len(sys.argv) >= 5:
         dbconn = MySQLdb.connect(
                 host="localhost",
                 port=3306,
