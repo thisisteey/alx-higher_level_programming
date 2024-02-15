@@ -24,7 +24,8 @@ The following dependencies will be needed for this python project.
 - >>> import sqlalchemy
 - >>> sqlalchemy.__version__ 
 - '1.4.22'
-**All these dependencies will be isntalled on an Ubuntu 20.04 machine**
+
+  **All these dependencies will be isntalled on an Ubuntu 20.04 machine**
 
 ## Requirements
 The following requriements are needed for this projects.
