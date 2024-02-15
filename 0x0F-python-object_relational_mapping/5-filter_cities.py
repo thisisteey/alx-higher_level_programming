@@ -24,7 +24,7 @@ if __name__ == '__main__':
             'WHERE CAST(states.name AS BINARY) = %s ' +
             'ORDER BY cities.id ASC;'
         )
-        dbcur.execute(dbqry, ('%' + stname + '%',))
+        dbcur.execute(dbqry, (stname,))
         qryres = dbcur.fetchall()
-        print(', '.join(city[0] for city in qryres))
+        print(', '.join(map(lambda cty: cty[0], qryres)))
         dbconn.close()
