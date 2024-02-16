@@ -19,8 +19,8 @@ if __name__ == '__main__':
         dbcur = dbconn.cursor()
         stname = sys.argv[4]
         dbqry = (
-            f'SELECT * FROM states WHERE CAST(name AS BINARY) LIKE ' +
-            f'CAST("{stname}" AS BINARY) ORDER BY id ASC;'
+            'SELECT * FROM states WHERE CAST(name AS BINARY) LIKE ' +
+            'CAST("{}" AS BINARY) ORDER BY id ASC;'.format(stname)
         )
         dbcur.execute(dbqry)
         qryres = dbcur.fetchall()
