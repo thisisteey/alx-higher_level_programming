@@ -1,4 +1,5 @@
-#!/usr/bin/pyt"""A module containing the City model is defined"""
+#!/usr/bin/python3
+"""A module containing the City model is defined"""
 from sqlalchemy import Column, Integer, String, ForeignKey
 from sqlalchemy.orm import relationship
 from relationship_state import Base
