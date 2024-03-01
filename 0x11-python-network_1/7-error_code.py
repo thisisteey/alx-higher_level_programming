@@ -10,7 +10,7 @@ if __name__ == "__main__":
     if len(sys.argv) > 1:
         urldt = sys.argv[1]
         urlres = requests.get(urldt)
-        urlstatus = urlres.status.code
+        urlstatus = urlres.status_code
         if urlstatus >= 400:
             print(f"Error code: {urlstatus}")
         else:
