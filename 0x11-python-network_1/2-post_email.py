@@ -1,4 +1,4 @@
-#!/usrl/bin/python3
+#!/usr/bin/python3
 """
 Script that takes in a URL and email, sends a POST request and decode in utf-8
 """
